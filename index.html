@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dilo — Software Engineer · Data Analyst · Data Scientist</title>
+<title>Dilo — Software Engineer</title>
 <meta name="description" content="I build modern, hand-coded websites, logos and short videos for restaurants, shops and brands. Free preview before you pay.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23ffffff'/><text x='50' y='66' font-family='Arial,Helvetica,sans-serif' font-size='44' font-weight='bold' fill='%233D6FE3' text-anchor='middle'>DL</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,6 +76,8 @@
   .about .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
   .about h2{font-size:clamp(2.4rem,5.4vw,3.9rem);font-weight:800;margin-bottom:18px}
   .about p.intro{font-size:1.15rem;color:var(--muted);max-width:560px}
+  .xlink{margin-top:14px;font-size:.98rem;color:var(--muted);background:#EEF5FD;border:1px solid #D6E6FB;border-radius:12px;padding:10px 14px;display:inline-block}
+  .xlink a{color:var(--blue);font-weight:600;border-bottom:1px solid currentColor}
   .socials{display:flex;gap:12px;margin:22px 0 0}
   .socials a{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);transition:transform .2s,border-color .2s}
   .socials a:hover{transform:translateY(-3px);border-color:var(--blue)}
@@ -128,19 +130,6 @@
   .private{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins';font-weight:600;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 14px}
   .featured-badge{display:inline-flex;gap:6px;align-items:center;background:#FFF4D6;color:#8A5A00;font-weight:600;font-size:.8rem;border-radius:999px;padding:4px 12px;margin-bottom:10px}
 
-  .data{background:linear-gradient(180deg,#EEF5FD,#F9FAFB)}
-  .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
-  .dcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s;display:flex;flex-direction:column}
-  .dcard:hover{transform:translateY(-6px);box-shadow:var(--shadow2)}
-  .dcard img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top;background:#0B1B33}
-  .dcard>div{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
-  .dcard .kind{font-family:'Poppins';font-weight:600;font-size:.8rem;color:var(--blue)}
-  .dcard h4{font-size:1.15rem}
-  .dcard p{color:var(--muted);font-size:.92rem}
-  .dcard .num{display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:8px}
-  .dcard .num b{font-family:'Poppins';font-size:1.5rem;font-weight:800}
-  .dcard .num span{font-size:.82rem;color:var(--muted)}
-  .dcard .code-link{font-family:'Poppins';font-weight:600;font-size:.86rem;color:var(--ink);margin-top:6px}
   .more{margin-top:80px}
   .more h3{font-size:1.4rem;margin-bottom:22px}
   .mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -206,7 +195,7 @@
     .about .grid,.proj,.split{grid-template-columns:1fr;gap:32px}
     .proj:nth-of-type(even) .shot{order:0}
     .svc-grid{grid-template-columns:1fr 1fr}
-    .mgrid,.dgrid{grid-template-columns:1fr 1fr}
+    .mgrid{grid-template-columns:1fr 1fr}
     .logos-grid{grid-template-columns:repeat(3,1fr)}
     .clips-grid{grid-template-columns:repeat(4,1fr)}
     .tl::before{left:24px}
@@ -219,7 +208,7 @@
     nav .in{padding:12px 16px;gap:10px}
     nav .links a{padding:7px 8px;font-size:.9rem}
     section{padding:68px 0}
-    .svc-grid,.mgrid,.dgrid{grid-template-columns:1fr}
+    .svc-grid,.mgrid{grid-template-columns:1fr}
     .clips-grid{grid-template-columns:1fr 1fr}
     .logos-grid{grid-template-columns:repeat(2,1fr)}
     .stack{gap:16px}
@@ -245,7 +234,6 @@
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
-      <a href="#data">Data</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </div>
@@ -256,7 +244,7 @@
 <header class="hero" id="top">
   <span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span><span class="cloud c4"></span>
   <canvas id="island" aria-label="A floating 3D island you can drag to rotate"></canvas>
-  <div class="bubble">Hi, I'm <b>Dilo</b> 👋<br>Software Engineer · Data Analyst · Data Scientist</div>
+  <div class="bubble">Hi, I'm <b>Dilo</b> 👋<br>A software engineer building web apps &amp; websites for businesses</div>
   <div class="hint"><span>🖱️ Drag to spin the island</span><span>⬇ Scroll to explore</span></div>
 </header>
 
@@ -266,8 +254,9 @@
     <div class="grid">
       <div class="reveal">
         <span class="tag">About me</span>
-        <h2>Software Engineer &amp; <span class="grad">Data Scientist</span> 👋</h2>
-        <p class="intro">Hi, I'm Dilo — <b>software engineer</b> at the Digital Smile agency in Algiers since 2025, and <b>data analyst &amp; data scientist</b> (PhD in Data Science, AI &amp; Statistics). I build web apps and websites for businesses, and I turn their data into forecasts, models and dashboards. Every project starts with a <b>free preview</b>, so you see it before you pay.</p>
+        <h2>Software <span class="grad">Engineer</span> 👋</h2>
+        <p class="intro">Hi, I'm Dilo, <b>software engineer</b> at the Digital Smile agency in Algiers since 2025. I build full-stack web apps and fast, hand-coded websites for businesses — from the database to the last animation. Every project starts with a <b>free preview</b>, so you see it before you pay.</p>
+        <p class="xlink">📊 I also work as a <b>data analyst &amp; data scientist</b> — <a href="https://hadil-ziane.netlify.app" target="_blank" rel="noopener">see my data portfolio ↗</a></p>
         <div class="socials">
           <a href="https://www.fiverr.com/hadix_z99" target="_blank" rel="noopener" aria-label="Fiverr"><svg viewBox="0 0 24 24" fill="#1DBF73"><circle cx="12" cy="12" r="12"/><text x="12" y="16.5" font-size="11" font-family="Arial" font-weight="700" fill="#fff" text-anchor="middle">fi</text></svg></a>
           <a href="https://wa.me/213779356935" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg></a>
@@ -275,7 +264,7 @@
         </div>
       </div>
       <div class="blob reveal" aria-hidden="true">
-        <div class="code"><i>const</i> dilo = {<br>&nbsp;&nbsp;roles: [<s>"software"</s>, <s>"data"</s>],<br>&nbsp;&nbsp;builds: [<s>"apps"</s>, <s>"models"</s>],<br>&nbsp;&nbsp;preview: <u>"free"</u>,<br>&nbsp;&nbsp;delivery: <u>"24h"</u><br>};</div>
+        <div class="code"><i>const</i> dilo = {<br>&nbsp;&nbsp;role: <s>"software engineer"</s>,<br>&nbsp;&nbsp;builds: [<s>"web apps"</s>, <s>"sites"</s>],<br>&nbsp;&nbsp;preview: <u>"free"</u>,<br>&nbsp;&nbsp;delivery: <u>"24h"</u><br>};</div>
       </div>
     </div>
     <div class="stack reveal">
@@ -288,9 +277,6 @@
         <li data-n="PHP"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="14" ry="8" fill="#777BB3"/><text x="16" y="19.5" font-family="Arial" font-weight="700" font-style="italic" font-size="9" fill="#fff" text-anchor="middle">php</text></svg></li>
         <li data-n="MySQL"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#00758F"/><path d="M6 8v16c0 2.2 4.5 4 10 4s10-1.8 10-4V8c0 2.2-4.5 4-10 4S6 10.2 6 8z" fill="#F29111"/><path d="M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.4" fill="none"/></svg></li>
         <li data-n="Python"><svg viewBox="0 0 32 32"><path fill="#3776AB" d="M15.9 3c-6.6 0-6.2 2.9-6.2 2.9v3h6.3v.9H7.2S3 9.3 3 16s3.7 6.4 3.7 6.4h2.2v-3.1s-.1-3.7 3.6-3.7h6.2s3.5.1 3.5-3.4V6.5S22.7 3 15.9 3zm-3.4 2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/><path fill="#FFD43B" d="M16.1 29c6.6 0 6.2-2.9 6.2-2.9v-3H16v-.9h8.8S29 22.7 29 16s-3.7-6.4-3.7-6.4h-2.2v3.1s.1 3.7-3.6 3.7h-6.2s-3.5-.1-3.5 3.4v5.7S9.3 29 16.1 29zm3.4-2a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2z"/></svg></li>
-        <li data-n="SQL"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#336791"/><path d="M6 8v16c0 2.2 4.5 4 10 4s10-1.8 10-4V8c0 2.2-4.5 4-10 4S6 10.2 6 8z" fill="#5B8FC7"/><text x="16" y="23" font-family="Arial" font-weight="700" font-size="8" fill="#fff" text-anchor="middle">SQL</text></svg></li>
-        <li data-n="Power BI"><svg viewBox="0 0 32 32"><rect x="18" y="5" width="7" height="22" rx="2" fill="#F2C811"/><rect x="12.5" y="11" width="7" height="16" rx="2" fill="#E8B10D"/><rect x="7" y="17" width="7" height="10" rx="2" fill="#C99A0B"/></svg></li>
-        <li data-n="scikit-learn"><svg viewBox="0 0 32 32"><circle cx="11" cy="16" r="8" fill="#F7931E"/><circle cx="21" cy="16" r="8" fill="#3499CD" opacity=".9"/><text x="16" y="19.5" font-family="Arial" font-weight="700" font-size="9" fill="#fff" text-anchor="middle">ML</text></svg></li>
         <li data-n="Netlify"><svg viewBox="0 0 32 32"><path fill="#00C7B7" d="M16 2l14 14-14 14L2 16z"/><path stroke="#fff" stroke-width="2" d="M10 16h12M16 10v12"/></svg></li>
       </ul>
     </div>
@@ -392,24 +378,6 @@
   </div>
 </section>
 
-<!-- DATA & ML -->
-<section class="data" id="data">
-  <div class="wrap">
-    <span class="tag reveal">Data &amp; machine learning</span>
-    <h2 class="title reveal">Data Analyst &amp; <span class="grad">Data Scientist</span></h2>
-    <p class="lead reveal">End-to-end data projects with real numbers and honest limits — SQL, Python, machine learning and Power BI dashboards.</p>
-    <div class="dgrid">
-        <a class="dcard reveal" href="https://github.com/Hadil16/job-postings-forecast" target="_blank" rel="noopener"><img src="img/data/forecast.png" alt="Job Postings Monitor dashboard" loading="lazy"><div><span class="kind">Forecasting · Time series</span><h4>Job Postings Monitor</h4><p>Where will data job postings go next?</p><div class="num"><b class="grad">3.3%</b><span>error at 13 weeks — 17 models backtested</span></div><span class="code-link">View on GitHub ↗</span></div></a>
-        <a class="dcard reveal" href="https://github.com/Hadil16/telco-churn-analysis" target="_blank" rel="noopener"><img src="img/data/churn.png" alt="Telco Churn dashboard" loading="lazy"><div><span class="kind">Machine learning · Churn</span><h4>Telco Churn</h4><p>Who will leave, and who should we call first?</p><div class="num"><b class="grad">0.845</b><span>AUC on unseen customers</span></div><span class="code-link">View on GitHub ↗</span></div></a>
-        <a class="dcard reveal" href="https://github.com/Hadil16/customer-segmentation-rfm" target="_blank" rel="noopener"><img src="img/data/segments.png" alt="Customer Segmentation dashboard" loading="lazy"><div><span class="kind">Segmentation · RFM</span><h4>Customer Segmentation</h4><p>Which customers matter most?</p><div class="num"><b class="grad">22% → 68%</b><span>of revenue from 22% of customers</span></div><span class="code-link">View on GitHub ↗</span></div></a>
-        <a class="dcard reveal" href="https://github.com/Hadil16/energy-transition-analysis" target="_blank" rel="noopener"><img src="img/data/energy.png" alt="Energy Shift dashboard" loading="lazy"><div><span class="kind">SQL · Country comparison</span><h4>Energy Shift</h4><p>Where does Algeria stand in the energy transition?</p><div class="num"><b class="grad">98.7%</b><span>of Algeria's electricity from gas</span></div><span class="code-link">View on GitHub ↗</span></div></a>
-        <a class="dcard reveal" href="https://github.com/Hadil16/olist-ecommerce-analysis" target="_blank" rel="noopener"><img src="img/data/olist.png" alt="Olist Reviews dashboard" loading="lazy"><div><span class="kind">SQL · E-commerce</span><h4>Olist Reviews</h4><p>Do late deliveries hurt satisfaction?</p><div class="num"><b class="grad">2.57 vs 4.29</b><span>stars, late vs on time</span></div><span class="code-link">View on GitHub ↗</span></div></a>
-        <a class="dcard reveal" href="https://github.com/Hadil16/superstore-profit-analysis" target="_blank" rel="noopener"><img src="img/data/superstore.png" alt="Superstore Profit dashboard" loading="lazy"><div><span class="kind">Regression · Pricing</span><h4>Superstore Profit</h4><p>Where does a retailer lose money?</p><div class="num"><b class="grad">-$135K</b><span>lost on discounts above 20%</span></div><span class="code-link">View on GitHub ↗</span></div></a>
-    </div>
-    <div class="reveal" style="margin-top:34px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn-blue" href="https://hadil-ziane.netlify.app" target="_blank" rel="noopener">Open my data portfolio ↗</a></div>
-  </div>
-</section>
-
 <!-- LOGOS + CLIPS -->
 <section id="logos">
   <div class="wrap">
@@ -474,7 +442,7 @@
 <footer>
   <div class="wrap">
     <span>© <span id="y"></span> Dilo. Hand-coded, no templates.</span>
-    <div><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+    <div><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a><a href="https://hadil-ziane.netlify.app" target="_blank" rel="noopener">Data portfolio ↗</a></div>
   </div>
 </footer>
 
@@ -489,7 +457,7 @@
   addEventListener('scroll',onScroll,{passive:true});onScroll();
   const navLinks=document.querySelectorAll('nav .links a');
   const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
-  ['about','services','projects','data','process','contact'].forEach(id=>{const s=document.getElementById(id);if(s)so.observe(s)});
+  ['about','services','projects','process','contact'].forEach(id=>{const s=document.getElementById(id);if(s)so.observe(s)});
 
   // reveal on scroll
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
