@@ -1,6 +1,6 @@
 # Software Engineer Portfolio — 3D Island
 
-My personal portfolio as a software engineer: a light, playful site with a **floating low-poly 3D island built from scratch with Three.js** that visitors can drag to spin, followed by my projects, services and process.
+My personal portfolio as a software engineer — **live at [hadil-ziane-dev.netlify.app](https://hadil-ziane-dev.netlify.app)**: a light, playful site with a **floating low-poly 3D island built from scratch with Three.js** that visitors can drag to spin, followed by my projects, services and process.
 
 **Stack:** HTML · CSS · JavaScript · Three.js (WebGL) — no framework, no template
 
