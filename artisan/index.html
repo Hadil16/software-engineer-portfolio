@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaPro — Plombier &amp; chauffagiste · Dépannage 24/7</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FF7A18'/><text x='50' y='75' font-family='Arial,Helvetica,sans-serif' font-size='64' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'>A</text></svg>">
+<meta name="description" content="AquaPro, plombier chauffagiste. Dépannage urgent 24/7, devis gratuit. Fuite, chauffe-eau, débouchage.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0B3A5B;--navy-2:#0E4870;--orange:#FF7A18;--orange-d:#E8630A;--paper:#F4F7FA;--white:#fff;--ink:#12222E;--muted:#5D6B77;--line:rgba(11,58,91,.14)}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+  h1,h2,h3{font-family:'Archivo',sans-serif;font-weight:900;line-height:1.02;letter-spacing:-.01em}
+  section{padding:5.5rem 1.5rem}.wrap{max-width:1120px;margin:0 auto}
+  .eyebrow{font-family:'Archivo',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:.95rem;padding:1rem 2rem;border-radius:6px;transition:transform .15s,box-shadow .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-orange{background:var(--orange);color:#fff;box-shadow:0 8px 24px rgba(255,122,24,.4)}.btn-orange:hover{background:var(--orange-d)}
+  .btn-white{background:#fff;color:var(--navy)}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+  .topbar{background:var(--ink);color:#fff;text-align:center;font-size:.88rem;font-weight:600;padding:.6rem 1rem}
+  .topbar a{color:var(--orange);font-weight:800}
+  nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+  nav .in{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem}
+  nav .logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.5rem;color:var(--navy)}nav .logo span{color:var(--orange)}
+  nav .ph{font-family:'Archivo',sans-serif;font-weight:900;color:var(--navy);font-size:1.1rem}
+  .hero{position:relative;color:#fff;overflow:hidden;background:linear-gradient(120deg,var(--navy),var(--navy-2))}
+  .hero-img{position:absolute;inset:0;z-index:0;opacity:.28}.hero-img img{width:100%;height:100%;object-fit:cover}
+  .hero .wrap{position:relative;z-index:2;padding:5rem 0}
+  .hero h1{font-size:clamp(2.6rem,7vw,4.6rem);max-width:16ch}
+  .hero h1 span{color:var(--orange)}
+  .hero p{max-width:34rem;font-size:1.15rem;opacity:.92;margin:1.2rem 0 2rem}
+  .hero .ctas{display:flex;gap:1rem;flex-wrap:wrap}
+  .badges{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2.4rem}
+  .badge{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:.95rem}
+  .badge i{font-style:normal;font-size:1.3rem}
+  .serv .head{text-align:center;max-width:38rem;margin:0 auto 3rem}.serv h2{font-size:clamp(2rem,5vw,3rem);margin:.5rem 0}.serv .head p{color:var(--muted)}
+  .serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  .sv{background:#fff;border:1px solid var(--line);border-radius:10px;padding:1.8rem 1.4rem;transition:transform .25s,box-shadow .25s;border-top:4px solid var(--orange)}
+  .sv:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(11,58,91,.12)}
+  .sv .ic{font-size:2rem;margin-bottom:.8rem}.sv h3{font-size:1.15rem;margin-bottom:.4rem}.sv p{color:var(--muted);font-size:.9rem}
+  .stats{background:var(--navy);color:#fff}.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+  .stat .num{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--orange)}
+  .stat .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;opacity:.85;margin-top:.3rem}
+  .cta{background:var(--orange);color:#fff;text-align:center}
+  .cta h2{font-size:clamp(2.2rem,6vw,3.6rem);margin-bottom:.6rem}.cta p{font-weight:600;margin-bottom:1.8rem;font-size:1.1rem;opacity:.95}
+  .cta .btn-white{color:var(--orange-d)}
+  footer{background:var(--ink);color:rgba(255,255,255,.7);text-align:center;padding:2.8rem 1.5rem}
+  footer .logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;display:block;margin-bottom:.4rem}footer .logo span{color:var(--orange)}
+  footer .credit{margin-top:1rem;font-size:.78rem;opacity:.6}
+  @media(max-width:900px){.serv-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:820px){section{padding:4rem 1.2rem}.stats .grid{grid-template-columns:1fr 1fr;gap:2.2rem}}
+  @media(max-width:520px){.serv-grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="topbar">🚨 Urgence plomberie ? On intervient en 30 min — <a href="tel:+33100000000">01 00 00 00 00</a></div>
+<nav><div class="in"><div class="logo">Aqua<span>Pro</span></div><div class="ph">📞 01 00 00 00 00</div></div></nav>
+<header class="hero">
+  <div class="hero-img"><img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=1600&auto=format&fit=crop" alt=""></div>
+  <div class="wrap">
+    <p class="eyebrow">Plombier · Chauffagiste · 24h/24</p>
+    <h1>Un souci d'eau ? <span>On arrive vite.</span></h1>
+    <p>Dépannage d'urgence, installation et entretien. Intervention rapide, travail soigné, prix clair — dans toute la région.</p>
+    <div class="ctas"><a class="btn btn-orange" href="tel:+33100000000">📞 Appeler maintenant</a><a class="btn btn-white" href="#services">Nos services</a></div>
+    <div class="badges">
+      <div class="badge"><i>⚡</i> Intervention 30 min</div>
+      <div class="badge"><i>💬</i> Devis gratuit</div>
+      <div class="badge"><i>🛡️</i> Travail garanti</div>
+    </div>
+  </div>
+</header>
+<section class="serv" id="services"><div class="wrap">
+  <div class="head reveal"><p class="eyebrow">Nos services</p><h2>Ce qu'on répare pour vous</h2><p>Un dépannage ou un projet ? On s'occupe de tout.</p></div>
+  <div class="serv-grid">
+    <div class="sv reveal"><div class="ic">💧</div><h3>Fuite d'eau</h3><p>Recherche et réparation, sans casse.</p></div>
+    <div class="sv reveal"><div class="ic">🔥</div><h3>Chauffe-eau</h3><p>Dépannage &amp; remplacement rapide.</p></div>
+    <div class="sv reveal"><div class="ic">🚽</div><h3>Débouchage</h3><p>Canalisations, WC, éviers.</p></div>
+    <div class="sv reveal"><div class="ic">🔧</div><h3>Installation</h3><p>Salle de bain, robinetterie, sanitaires.</p></div>
+  </div>
+</div></section>
+<section class="stats"><div class="wrap grid">
+  <div class="stat reveal"><div class="num">24/7</div><div class="lbl">Disponible</div></div>
+  <div class="stat reveal"><div class="num">30min</div><div class="lbl">Délai moyen</div></div>
+  <div class="stat reveal"><div class="num">4000+</div><div class="lbl">Interventions</div></div>
+  <div class="stat reveal"><div class="num">4,9★</div><div class="lbl">Avis clients</div></div>
+</div></section>
+<section class="cta" id="contact"><div class="wrap reveal"><h2>Besoin d'un plombier maintenant ?</h2><p>Un appel suffit. Devis gratuit, sans engagement.</p><a class="btn btn-white" href="tel:+33100000000">📞 01 00 00 00 00</a></div></section>
+<footer><span class="logo">Aqua<span>Pro</span></span><p>Plombier chauffagiste · Intervention dans toute la région · 24h/24 - 7j/7</p><p class="credit">Maquette de démonstration — réalisée par [ TON NOM ]</p></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body></html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dilo — Software Engineer</title>
+<meta name="description" content="I build modern, hand-coded websites, logos and short videos for restaurants, shops and brands. Free preview before you pay.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23ffffff'/><text x='50' y='66' font-family='Arial,Helvetica,sans-serif' font-size='44' font-weight='bold' fill='%233D6FE3' text-anchor='middle'>DL</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#3D6FE3;--blue-d:#2A55BF;--sky1:#A7D3F7;--sky2:#5B9BEF;
+    --ink:#1E2433;--text:#3A4254;--muted:#6B7385;--bg:#F9FAFB;--white:#FFFFFF;--line:#E6E9EF;
+    --grad:linear-gradient(90deg,#00C6FF,#0072FF);
+    --shadow:0 10px 30px rgba(30,36,51,.08);--shadow2:0 18px 40px rgba(30,36,51,.12);
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{font-family:'Work Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;color:var(--ink);line-height:1.15}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Poppins';font-weight:600;padding:.85rem 1.5rem;border-radius:12px;transition:transform .2s var(--ease),box-shadow .2s,background .2s;font-size:.98rem;border:0;cursor:pointer}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-blue{background:var(--blue);color:#fff;box-shadow:0 6px 0 var(--blue-d)}
+  .btn-blue:hover{box-shadow:0 8px 0 var(--blue-d)}
+  .btn-white{background:#fff;color:var(--ink);box-shadow:var(--shadow)}
+
+  /* ===== NAV ===== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:30;transition:background .3s,box-shadow .3s}
+  nav.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+  nav .in{max-width:1140px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:18px}
+  .logo{width:46px;height:46px;border-radius:12px;background:#fff;display:grid;place-items:center;font-family:'Poppins';font-weight:800;box-shadow:var(--shadow);flex:none}
+  .logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav .links{display:flex;gap:6px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  nav .links::-webkit-scrollbar{display:none}
+  nav .links a{font-family:'Poppins';font-weight:500;color:var(--ink);padding:8px 12px;border-radius:10px;white-space:nowrap;transition:color .2s,background .2s}
+  nav .links a:hover{background:rgba(255,255,255,.6)}
+  nav .links a.on{color:var(--blue)}
+
+  /* ===== HERO : ciel + île 3D ===== */
+  .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:linear-gradient(180deg,#5B9BEF 0%,#8DC2F5 45%,#CFE6FB 78%,#EEF5FD 100%)}
+  .cloud{position:absolute;background:#fff;border-radius:999px;opacity:.85;filter:blur(2px);animation:drift linear infinite}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+  .cloud::before{width:55%;height:180%;left:12%;bottom:20%}
+  .cloud::after{width:40%;height:140%;right:12%;bottom:25%}
+  .c1{width:260px;height:70px;top:16%;left:-300px;animation-duration:70s}
+  .c2{width:180px;height:50px;top:34%;left:-200px;animation-duration:55s;animation-delay:-25s;opacity:.7}
+  .c3{width:320px;height:80px;top:8%;left:-340px;animation-duration:90s;animation-delay:-60s;opacity:.6}
+  .c4{width:220px;height:60px;top:58%;left:-240px;animation-duration:80s;animation-delay:-40s;opacity:.55}
+  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 400px))}}
+  #island{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:pan-y}
+  #island:active{cursor:grabbing}
+  .bubble{position:absolute;left:50%;top:15%;transform:translateX(-50%);z-index:5;background:var(--blue);color:#fff;text-align:center;border-radius:16px;padding:18px 34px;box-shadow:0 8px 0 var(--blue-d);font-size:clamp(1rem,2.1vw,1.3rem);line-height:1.5;width:max-content;max-width:calc(100% - 32px);animation:pop .7s var(--ease) both}
+  .bubble b{font-family:'Poppins';font-weight:700}
+  @keyframes pop{from{opacity:0;transform:translate(-50%,14px) scale(.96)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+  .hint{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:5;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;width:max-content;max-width:calc(100% - 32px)}
+  .hint span{background:rgba(255,255,255,.85);border-radius:999px;padding:7px 14px;font-size:.85rem;font-weight:500;color:var(--ink);box-shadow:var(--shadow)}
+
+  /* ===== sections ===== */
+  section{padding:96px 0}
+  .tag{display:inline-block;font-family:'Poppins';font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+  .title{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;margin-bottom:14px}
+  .lead{color:var(--muted);max-width:640px;font-size:1.08rem}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ABOUT (style « Stefan ») */
+  .about{background:#fff}
+  .about .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+  .about h2{font-size:clamp(2.4rem,5.4vw,3.9rem);font-weight:800;margin-bottom:18px}
+  .about p.intro{font-size:1.15rem;color:var(--muted);max-width:560px}
+  .socials{display:flex;gap:12px;margin:22px 0 0}
+  .socials a{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);transition:transform .2s,border-color .2s}
+  .socials a:hover{transform:translateY(-3px);border-color:var(--blue)}
+  .socials svg{width:20px;height:20px}
+  .blob{width:100%;max-width:340px;aspect-ratio:1;justify-self:center;border-radius:62% 38% 46% 54%/49% 52% 48% 51%;background:linear-gradient(135deg,#CFE6FB,#5B9BEF);border:3px solid var(--ink);display:grid;place-items:center;animation:morph 9s ease-in-out infinite;position:relative;overflow:hidden}
+  .blob .code{font-family:Consolas,monospace;font-size:.92rem;background:#1E2433;color:#E6EDF7;border-radius:14px;padding:18px 20px;line-height:1.7;box-shadow:var(--shadow2);transform:rotate(-4deg)}
+  .blob .code i{font-style:normal;color:#7DD3FC}.blob .code u{text-decoration:none;color:#FDE68A}.blob .code s{text-decoration:none;color:#86EFAC}
+  @keyframes morph{0%,100%{border-radius:62% 38% 46% 54%/49% 52% 48% 51%}50%{border-radius:42% 58% 60% 40%/58% 42% 58% 42%}}
+  .stack{display:flex;align-items:center;gap:26px;margin-top:56px;flex-wrap:wrap}
+  .stack .lbl{font-family:'Poppins';font-weight:600;color:var(--ink);padding-right:26px;border-right:2px solid var(--ink)}
+  .stack ul{list-style:none;display:flex;gap:16px;flex-wrap:wrap}
+  .stack li{width:58px;height:58px;border-radius:50%;background:#fff;box-shadow:var(--shadow);display:grid;place-items:center;transition:transform .25s var(--ease);position:relative}
+  .stack li:hover{transform:translateY(-6px)}
+  .stack li svg{width:30px;height:30px}
+  .stack li::after{content:attr(data-n);position:absolute;bottom:-26px;font-size:.72rem;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .2s}
+  .stack li:hover::after{opacity:1}
+
+  /* SERVICES */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .svc{background:#fff;border-radius:20px;padding:28px;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s;border:1px solid var(--line)}
+  .svc:hover{transform:translateY(-6px);box-shadow:var(--shadow2)}
+  .svc .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.6rem;margin-bottom:16px}
+  .svc:nth-child(1) .ic{background:#E0EDFF}.svc:nth-child(2) .ic{background:#FFE8DC}.svc:nth-child(3) .ic{background:#F1E6FF}
+  .svc:nth-child(4) .ic{background:#FFF4D6}.svc:nth-child(5) .ic{background:#DCF7EA}.svc:nth-child(6) .ic{background:#FFE0EA}
+  .svc h3{font-size:1.18rem;margin-bottom:6px}
+  .svc p{color:var(--muted);font-size:.95rem}
+  .svc .free{display:inline-block;margin-top:12px;font-weight:600;font-size:.84rem;color:var(--blue);background:#EEF3FF;border-radius:999px;padding:3px 12px}
+
+  /* PROJECTS (rangées alternées) */
+  .projects{background:#fff}
+  .proj{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;margin-top:64px}
+  .proj:nth-of-type(even) .shot{order:2}
+  .shot{border-radius:22px;overflow:hidden;box-shadow:var(--shadow2);background:#fff;border:1px solid var(--line);transition:transform .4s var(--ease)}
+  .shot:hover{transform:translateY(-6px) rotate(-.5deg)}
+  .shot .bar{height:30px;background:#F2F4F8;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line)}
+  .shot .bar i{width:10px;height:10px;border-radius:50%}
+  .shot .bar i:nth-child(1){background:#FF6058}.shot .bar i:nth-child(2){background:#FFBD2E}.shot .bar i:nth-child(3){background:#28C941}
+  .shot .bar span{margin-left:10px;font-size:.72rem;color:var(--muted);background:#fff;border-radius:6px;padding:2px 10px}
+  .shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+  .proj .kind{font-family:'Poppins';font-weight:600;font-size:.85rem;color:var(--blue)}
+  .proj h3{font-size:clamp(1.6rem,3vw,2.1rem);margin:6px 0 12px}
+  .proj p{color:var(--muted);margin-bottom:14px}
+  .proj .facts{list-style:none;display:grid;gap:8px;margin:0 0 18px}
+  .proj .facts li{padding-left:26px;position:relative;font-size:.96rem}
+  .proj .facts li::before{content:"✓";position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;background:#E0EDFF;color:var(--blue);font-size:.7rem;display:grid;place-items:center;font-weight:700;margin-top:3px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .chip{font-size:.8rem;font-weight:500;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+  .links2{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .links2 a.txt{font-family:'Poppins';font-weight:600;color:var(--ink);display:inline-flex;gap:6px;align-items:center;border-bottom:2px solid var(--blue);padding-bottom:2px}
+  .private{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins';font-weight:600;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+  .featured-badge{display:inline-flex;gap:6px;align-items:center;background:#FFF4D6;color:#8A5A00;font-weight:600;font-size:.8rem;border-radius:999px;padding:4px 12px;margin-bottom:10px}
+
+  .more{margin-top:80px}
+  .more h3{font-size:1.4rem;margin-bottom:22px}
+  .mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s;display:flex;flex-direction:column}
+  .mcard:hover{transform:translateY(-6px);box-shadow:var(--shadow2)}
+  .mcard img{aspect-ratio:16/10;object-fit:cover}
+  .mcard div{padding:14px 16px 16px}
+  .mcard h4{font-size:1.05rem}
+  .mcard span{font-size:.85rem;color:var(--muted)}
+  .mcard.you{background:var(--blue);color:#fff;justify-content:center;align-items:flex-start;padding:22px;box-shadow:0 8px 0 var(--blue-d);border:0}
+  .mcard.you h4{color:#fff;font-size:1.25rem;margin-bottom:6px}
+  .mcard.you p{opacity:.9;font-size:.92rem;margin-bottom:14px}
+  .mcard.you b{background:#fff;color:var(--blue);border-radius:10px;padding:8px 14px;font-family:'Poppins';font-size:.88rem}
+
+  /* LOGOS + CLIPS */
+  .logos-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:40px}
+  .logo-card{aspect-ratio:1;background:#1E2433;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;transition:transform .3s var(--ease)}
+  .logo-card:hover{transform:translateY(-6px) rotate(-1deg)}
+  .logo-card svg{width:90%;height:auto}
+  .logo-card .cat{font-size:.68rem;color:#9AA3B5;letter-spacing:.08em;text-transform:uppercase}
+  .clips-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+  .clip-card{position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;box-shadow:var(--shadow2)}
+  .clip-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+  .clip-card:hover img{transform:scale(1.05)}
+  .clip-card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(30,36,51,.85),transparent 55%)}
+  .clip-card .lbl{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px;color:#fff}
+  .clip-card .lbl small{color:#BFDBFE;font-weight:600}
+  .clip-card .lbl h4{color:#fff;font-size:1.05rem}
+  .clip-card .dur{position:absolute;top:12px;right:12px;z-index:2;background:rgba(255,255,255,.9);color:var(--ink);font-size:.74rem;font-weight:600;padding:2px 9px;border-radius:999px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+
+  /* PROCESS — frise verticale */
+  .process{background:#fff}
+  .tl{list-style:none;position:relative;max-width:900px;margin:56px auto 0}
+  .tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:#E6E9EF;transform:translateX(-50%)}
+  .tl li{position:relative;width:50%;padding:0 52px 36px 0}
+  .tl li:nth-child(even){margin-left:50%;padding:0 0 36px 52px}
+  .tl .dot{position:absolute;top:10px;right:-24px;width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:var(--shadow);display:grid;place-items:center;font-size:1.3rem;z-index:2}
+  .tl li:nth-child(even) .dot{right:auto;left:-24px}
+  .tl .card{background:var(--bg);border-radius:18px;padding:22px 24px;border-bottom:6px solid var(--c,#3D6FE3);box-shadow:var(--shadow)}
+  .tl .card small{font-weight:600;color:var(--c,#3D6FE3)}
+  .tl .card h3{font-size:1.2rem;margin:2px 0 6px}
+  .tl .card p{color:var(--muted);font-size:.95rem}
+
+  /* CTA (boîte bleue) */
+  .cta-box{background:var(--blue);border-radius:24px;box-shadow:0 10px 0 var(--blue-d);color:#fff;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+  .cta-box h2{color:#fff;font-size:clamp(1.7rem,3.6vw,2.5rem);max-width:620px}
+  .cta-box p{opacity:.9;margin-top:8px;max-width:560px}
+  .cta-box .btns{display:flex;gap:12px;flex-wrap:wrap}
+  .contact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+  .contact-row a{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:center;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+  .contact-row a:hover{transform:translateY(-3px);border-color:var(--blue)}
+  .contact-row .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:#EEF3FF;flex:none}
+  .contact-row b{display:block;font-family:'Poppins';color:var(--ink)}
+  .contact-row span{font-size:.88rem;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  footer .wrap div{display:flex;gap:18px}
+  footer a:hover{color:var(--blue)}
+
+  @media (max-width:980px){
+    .about .grid,.proj,.split{grid-template-columns:1fr;gap:32px}
+    .proj:nth-of-type(even) .shot{order:0}
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .mgrid{grid-template-columns:1fr 1fr}
+    .logos-grid{grid-template-columns:repeat(3,1fr)}
+    .clips-grid{grid-template-columns:repeat(4,1fr)}
+    .tl::before{left:24px}
+    .tl li,.tl li:nth-child(even){width:100%;margin-left:0;padding:0 0 26px 72px}
+    .tl .dot,.tl li:nth-child(even) .dot{left:0;right:auto;top:6px}
+    .contact-row{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    nav .in{padding:12px 16px;gap:10px}
+    nav .links a{padding:7px 8px;font-size:.9rem}
+    section{padding:68px 0}
+    .svc-grid,.mgrid{grid-template-columns:1fr}
+    .clips-grid{grid-template-columns:1fr 1fr}
+    .logos-grid{grid-template-columns:repeat(2,1fr)}
+    .stack{gap:16px}
+    .stack .lbl{border:0;padding:0;width:100%}
+    .stack li{width:50px;height:50px}
+    .cta-box{padding:30px 22px}
+    .bubble{padding:14px 20px;top:13%}
+    .hint span:nth-child(2){display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="in">
+    <a class="logo" href="#top" aria-label="Dilo, back to top"><span>DL</span></a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO : sky + floating 3D island -->
+<header class="hero" id="top">
+  <span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span><span class="cloud c4"></span>
+  <canvas id="island" aria-label="A floating 3D island you can drag to rotate"></canvas>
+  <div class="bubble">Hi, I'm <b>Dilo</b> 👋<br>A software engineer building websites &amp; web apps for businesses</div>
+  <div class="hint"><span>🖱️ Drag to spin the island</span><span>⬇ Scroll to explore</span></div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="grid">
+      <div class="reveal">
+        <span class="tag">About me</span>
+        <h2>Software <span class="grad">Engineer</span> 👋</h2>
+        <p class="intro">Hi, I'm Dilo, software engineer at the <b>Digital Smile</b> agency in Algiers since 2025. I build web apps and hand-code fast, modern websites — plus logos and short videos — for restaurants, salons, shops and tradespeople. Every project starts with a <b>free preview</b>, so you see it before you pay.</p>
+        <div class="socials">
+          <a href="https://www.fiverr.com/hadix_z99" target="_blank" rel="noopener" aria-label="Fiverr"><svg viewBox="0 0 24 24" fill="#1DBF73"><circle cx="12" cy="12" r="12"/><text x="12" y="16.5" font-size="11" font-family="Arial" font-weight="700" fill="#fff" text-anchor="middle">fi</text></svg></a>
+          <a href="https://wa.me/213779356935" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg></a>
+          <a href="mailto:zhaven06@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="#3D6FE3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div class="blob reveal" aria-hidden="true">
+        <div class="code"><i>const</i> dilo = {<br>&nbsp;&nbsp;role: <s>"software engineer"</s>,<br>&nbsp;&nbsp;builds: [<s>"sites"</s>, <s>"logos"</s>],<br>&nbsp;&nbsp;preview: <u>"free"</u>,<br>&nbsp;&nbsp;delivery: <u>"24h"</u><br>};</div>
+      </div>
+    </div>
+    <div class="stack reveal">
+      <span class="lbl">Tech Stack</span>
+      <ul>
+        <li data-n="HTML5"><svg viewBox="0 0 32 32"><path fill="#E44D26" d="M5 3l2.2 24.6L16 30l8.8-2.4L27 3z"/><path fill="#F16529" d="M16 27.9l7.1-2L25 5.1H16z"/><path fill="#fff" d="M16 13.3h-3.6l-.2-2.8H16V7.8H9.2l.7 8.2H16zm0 7.2l-3-.8-.2-2.2h-2.7l.4 4.3 5.5 1.5z"/><path fill="#EBEBEB" d="M16 13.3V16h3.3l-.3 3.7-3 .8v2.8l5.5-1.5.8-8.5zm0-5.5v2.7h6.6l.2-2.7z"/></svg></li>
+        <li data-n="CSS3"><svg viewBox="0 0 32 32"><path fill="#1572B6" d="M5 3l2.2 24.6L16 30l8.8-2.4L27 3z"/><path fill="#33A9DC" d="M16 27.9l7.1-2L25 5.1H16z"/><path fill="#fff" d="M16 13.2h3.5l.3-2.7H16V7.8h6.8l-.1.7-.6 7.4H16zm0 7.3l3-.8.3-3.4H22l-.5 5.9-5.5 1.5z"/><path fill="#EBEBEB" d="M16 13.2v2.7h-3.3l-.2-2.7zm0-5.4v2.7H9.5l-.2-2.7zm0 12.7v2.8l-5.5-1.5-.3-4h2.7l.2 2z"/></svg></li>
+        <li data-n="JavaScript"><svg viewBox="0 0 32 32"><rect width="26" height="26" x="3" y="3" rx="3" fill="#F7DF1E"/><path d="M20.8 22.9c.5.8 1.2 1.4 2.3 1.4 1 0 1.6-.5 1.6-1.2 0-.8-.6-1.1-1.7-1.6l-.6-.3c-1.7-.7-2.8-1.6-2.8-3.5 0-1.7 1.3-3 3.4-3 1.5 0 2.5.5 3.3 1.8l-1.8 1.2c-.4-.7-.8-1-1.5-1s-1.1.4-1.1 1c0 .7.4 1 1.4 1.4l.6.3c2 .9 3.1 1.7 3.1 3.7 0 2.1-1.7 3.3-3.9 3.3-2.2 0-3.6-1-4.3-2.4zm-8.3.2c.4.7.7 1.2 1.5 1.2.8 0 1.3-.3 1.3-1.5V15h2.3v7.8c0 2.4-1.4 3.5-3.5 3.5-1.9 0-3-1-3.5-2.2z" fill="#1E2433"/></svg></li>
+        <li data-n="Responsive"><svg viewBox="0 0 32 32" fill="none" stroke="#3D6FE3" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="6" width="19" height="14" rx="2"/><path d="M9 25h7M12.5 20v5"/><rect x="21" y="12" width="8" height="14" rx="2" fill="#fff"/></svg></li>
+        <li data-n="PHP"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="14" ry="8" fill="#777BB3"/><text x="16" y="19.5" font-family="Arial" font-weight="700" font-style="italic" font-size="9" fill="#fff" text-anchor="middle">php</text></svg></li>
+        <li data-n="MySQL"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#00758F"/><path d="M6 8v16c0 2.2 4.5 4 10 4s10-1.8 10-4V8c0 2.2-4.5 4-10 4S6 10.2 6 8z" fill="#F29111"/><path d="M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.4" fill="none"/></svg></li>
+        <li data-n="Netlify"><svg viewBox="0 0 32 32"><path fill="#00C7B7" d="M16 2l14 14-14 14L2 16z"/><path stroke="#fff" stroke-width="2" d="M10 16h12M16 10v12"/></svg></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <span class="tag reveal">What I do</span>
+    <h2 class="title reveal">Websites, logos &amp; <span class="grad">short videos</span></h2>
+    <p class="lead reveal">Everything your business needs to look professional online — with a free preview every time.</p>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="ic">🌐</div><h3>Websites</h3><p>Modern, animated websites that turn visitors into customers.</p><span class="free">From $100 · free preview</span></div>
+      <div class="svc reveal"><div class="ic">✏️</div><h3>Logos &amp; identity</h3><p>A clean, memorable logo and a brand image people trust.</p><span class="free">First concept free</span></div>
+      <div class="svc reveal"><div class="ic">🎬</div><h3>Video clips</h3><p>Short TikTok / Reels / Shorts edits — captions, hooks, ready to post.</p><span class="free">Free test clip</span></div>
+      <div class="svc reveal"><div class="ic">🍽️</div><h3>Restaurants &amp; cafés</h3><p>Menu, booking, atmosphere. A website that makes people hungry.</p></div>
+      <div class="svc reveal"><div class="ic">🛍️</div><h3>Shops &amp; e-commerce</h3><p>Sell online, simply, with payments included.</p></div>
+      <div class="svc reveal"><div class="ic">🔧</div><h3>Redesigns &amp; fixes</h3><p>Old or buggy website? I'll make it feel brand new.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <span class="tag reveal">Projects</span>
+    <h2 class="title reveal">Each project is a <span class="grad">real business site</span></h2>
+    <p class="lead reveal">Built like sites a business could launch tomorrow — responsive on every screen. Click to open them live.</p>
+
+    <article class="proj reveal">
+      <div class="shot"><div class="bar"><i></i><i></i><i></i><span>digital-smile · agency website</span></div><img src="img/digital-smile.png" alt="Digital Smile agency homepage: Votre marque, réinventée." width="1440" height="900"></div>
+      <div>
+        <span class="featured-badge">💼 Real client work</span><br>
+        <span class="kind">Creative agency · Algiers · Software Engineer since 2025</span>
+        <h3>Digital Smile</h3>
+        <p>The website and management platform of a branding agency in Algiers — from logos and print to web and video.</p>
+        <ul class="facts"><li>Animated agency homepage presenting every service: branding, print, web, video</li><li>Management platform for clients, staff and admins — 15-table MySQL database</li><li>Three languages (French, Arabic, English) and secure logins (hashed passwords, protected queries)</li></ul>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">MySQL</span></div>
+        <div class="links2"><span class="private"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.3 4.3 18.3 4.6 18.3 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg>Private GitHub repository · code on request</span></div>
+      </div>
+    </article>
+
+    <article class="proj reveal">
+      <a class="shot" href="https://safran0.netlify.app" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span>safran0.netlify.app</span></div><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" alt="Le Safran restaurant website" loading="lazy"></a>
+      <div>
+        <span class="featured-badge">⭐ Featured demo</span><br>
+        <span class="kind">Restaurant · elegant &amp; warm</span>
+        <h3>Le Safran</h3>
+        <p>A restaurant site that has to make people hungry in seconds — especially on a phone — and make them want to book.</p>
+        <ul class="facts"><li>Animated hero, ready for a background video</li><li>Full menu, dishes in photos and customer reviews</li><li>Opening hours and map, now my starting template for restaurants</li></ul>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Netlify</span></div>
+        <div class="links2"><a class="btn btn-blue" href="https://safran0.netlify.app" target="_blank" rel="noopener">Live demo ↗</a><a class="txt" href="restaurant/" target="_blank" rel="noopener">Demo version →</a></div>
+      </div>
+    </article>
+
+    <article class="proj reveal">
+      <a class="shot" href="gym/" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span>pulse-gym</span></div><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop" alt="PULSE gym website" loading="lazy"></a>
+      <div>
+        <span class="kind">Gym · dark &amp; punchy</span>
+        <h3>PULSE</h3>
+        <p>A high-energy gym landing page with classes, coaches and memberships — built to get sign-ups.</p>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+        <div class="links2"><a class="txt" href="gym/" target="_blank" rel="noopener">Live demo ↗</a></div>
+      </div>
+    </article>
+
+    <article class="proj reveal">
+      <a class="shot" href="boutique/" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span>mork.shop</span></div><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1200&auto=format&fit=crop" alt="MÖRK online shop website" loading="lazy"></a>
+      <div>
+        <span class="kind">E-commerce · editorial &amp; modern</span>
+        <h3>MÖRK</h3>
+        <p>A fashion store layout with a product grid and an editorial look that makes products feel premium.</p>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+        <div class="links2"><a class="txt" href="boutique/" target="_blank" rel="noopener">Live demo ↗</a></div>
+      </div>
+    </article>
+
+    <article class="proj reveal">
+      <a class="shot" href="agence/" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span>nexa.app</span></div><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop" alt="Nexa software website" loading="lazy"></a>
+      <div>
+        <span class="kind">Software · glassmorphism &amp; tech</span>
+        <h3>Nexa</h3>
+        <p>A SaaS-style landing page with glass cards, features and pricing — the kind of site a tech startup needs.</p>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+        <div class="links2"><a class="txt" href="agence/" target="_blank" rel="noopener">Live demo ↗</a></div>
+      </div>
+    </article>
+
+    <div class="more reveal">
+      <h3>More styles</h3>
+      <div class="mgrid">
+        <a class="mcard" href="beaute/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=700&auto=format&fit=crop" alt="L'Éclat beauty salon website" loading="lazy"><div><h4>L'Éclat</h4><span>Beauty salon · soft &amp; refined</span></div></a>
+        <a class="mcard" href="immobilier/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=700&auto=format&fit=crop" alt="PRESTIGE real estate website" loading="lazy"><div><h4>PRESTIGE</h4><span>Real estate · chic &amp; trustworthy</span></div></a>
+        <a class="mcard" href="photographe/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=700&auto=format&fit=crop" alt="NOÉ photographer website" loading="lazy"><div><h4>NOÉ</h4><span>Photographer · minimal</span></div></a>
+        <a class="mcard" href="artisan/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?q=80&w=700&auto=format&fit=crop" alt="AquaPro plumber website" loading="lazy"><div><h4>AquaPro</h4><span>Tradesman · solid &amp; reassuring</span></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS + CLIPS -->
+<section id="logos">
+  <div class="wrap">
+    <span class="tag reveal">Logos &amp; identity</span>
+    <h2 class="title reveal">Logos that <span class="grad">stick</span></h2>
+    <p class="lead reveal">A few example styles. Yours will be unique — first concept free.</p>
+    <div class="logos-grid">
+      <div class="logo-card reveal"><svg viewBox="0 0 175 60"><rect x="2" y="6" width="48" height="48" rx="12" fill="#8B5CF6"/><text x="26" y="43" font-family="Poppins,sans-serif" font-weight="800" font-size="30" fill="#fff" text-anchor="middle">S</text><text x="62" y="41" font-family="Poppins,sans-serif" font-weight="700" font-size="25" fill="#EEF0F6">Stella</text></svg><span class="cat">Boutique</span></div>
+      <div class="logo-card reveal"><svg viewBox="0 0 175 60"><path d="M28 8 C10 16 10 44 28 52 C46 44 46 16 28 8 Z" fill="#34D399"/><path d="M28 13 L28 49" stroke="#0b3b2b" stroke-width="2"/><text x="52" y="41" font-family="Poppins,sans-serif" font-weight="700" font-size="25" fill="#EEF0F6">Verde</text></svg><span class="cat">Organic</span></div>
+      <div class="logo-card reveal"><svg viewBox="0 0 185 60"><rect x="8" y="18" width="34" height="28" rx="6" fill="#F59E0B"/><path d="M42 25 h8 a7 7 0 0 1 0 14 h-8" fill="none" stroke="#F59E0B" stroke-width="4"/><rect x="15" y="9" width="4" height="7" rx="2" fill="#F59E0B"/><rect x="25" y="7" width="4" height="9" rx="2" fill="#F59E0B"/><text x="60" y="41" font-family="Poppins,sans-serif" font-weight="800" font-size="24" fill="#EEF0F6">BREW</text></svg><span class="cat">Café</span></div>
+      <div class="logo-card reveal"><svg viewBox="0 0 185 60"><path d="M26 6 L12 34 H24 L18 54 L40 24 H28 Z" fill="#22D3EE"/><text x="50" y="41" font-family="Poppins,sans-serif" font-weight="800" font-size="24" fill="#EEF0F6">PULSE</text></svg><span class="cat">Sport</span></div>
+      <div class="logo-card reveal"><svg viewBox="0 0 190 60"><text x="8" y="42" font-family="Georgia,serif" font-style="italic" font-weight="600" font-size="34" fill="#EEF0F6">Maison</text><rect x="10" y="48" width="122" height="2" fill="#F472B6"/></svg><span class="cat">Real estate</span></div>
+      <div class="logo-card reveal"><svg viewBox="0 0 175 60"><rect x="6" y="12" width="16" height="16" fill="#F472B6"/><rect x="24" y="12" width="16" height="16" fill="#8B5CF6"/><rect x="6" y="30" width="16" height="16" fill="#22D3EE"/><rect x="24" y="30" width="16" height="16" fill="#F472B6"/><text x="50" y="41" font-family="Poppins,sans-serif" font-weight="800" font-size="24" fill="#EEF0F6">PIXL</text></svg><span class="cat">Studio</span></div>
+    </div>
+
+    <div style="margin-top:88px" id="clips">
+      <span class="tag reveal">Video clips</span>
+      <h2 class="title reveal">Short videos that <span class="grad">hook</span></h2>
+      <p class="lead reveal">Edits for TikTok, Reels &amp; Shorts — example formats.</p>
+      <div class="clips-grid">
+        <div class="clip-card reveal"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=600&auto=format&fit=crop" alt="Restaurant clip format" loading="lazy"><span class="dur">0:15</span><div class="lbl"><small>Restaurant</small><h4>Dish of the day</h4></div></div>
+        <div class="clip-card reveal"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=600&auto=format&fit=crop" alt="Shop clip format" loading="lazy"><span class="dur">0:20</span><div class="lbl"><small>Shop</small><h4>New collection</h4></div></div>
+        <div class="clip-card reveal"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop" alt="Gym clip format" loading="lazy"><span class="dur">0:12</span><div class="lbl"><small>Gym</small><h4>Motivation</h4></div></div>
+        <div class="clip-card reveal"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop" alt="Real estate clip format" loading="lazy"><span class="dur">0:25</span><div class="lbl"><small>Real estate</small><h4>Quick tour</h4></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div style="text-align:center">
+      <span class="tag reveal">How I work</span>
+      <h2 class="title reveal">Simple, fast, <span class="grad">risk-free</span></h2>
+      <p class="lead reveal" style="margin:0 auto">You see the result before you pay. No bad surprises.</p>
+    </div>
+    <ol class="tl">
+      <li class="reveal"><span class="dot">💬</span><div class="card" style="--c:#3D6FE3"><small>Step 01</small><h3>We talk</h3><p>You tell me about your business and what you want.</p></div></li>
+      <li class="reveal"><span class="dot">🎨</span><div class="card" style="--c:#F97316"><small>Step 02</small><h3>Free preview</h3><p>I send you a mockup of your project within 24h. For free.</p></div></li>
+      <li class="reveal"><span class="dot">✅</span><div class="card" style="--c:#10B981"><small>Step 03</small><h3>You approve</h3><p>Like it? We finish it with your text and photos.</p></div></li>
+      <li class="reveal"><span class="dot">🚀</span><div class="card" style="--c:#8B5CF6"><small>Step 04</small><h3>Delivered</h3><p>Website live, logo or clips delivered, ready to use.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div><h2>Have a project in mind? Let's build something together!</h2><p>Tell me what you need — I'll send a free mockup within 24h. You only pay if you love it.</p></div>
+      <div class="btns"><a class="btn btn-white" href="https://www.fiverr.com/hadix_z99" target="_blank" rel="noopener">Contact me on Fiverr</a></div>
+    </div>
+    <div class="contact-row">
+      <a class="reveal" href="https://wa.me/213779356935" target="_blank" rel="noopener"><span class="ic">💬</span><span><b>WhatsApp</b><span>Quick chat, fast answer</span></span></a>
+      <a class="reveal" href="mailto:zhaven06@gmail.com"><span class="ic">✉️</span><span><b>Email</b><span>zhaven06@gmail.com</span></span></a>
+      <a class="reveal" href="https://www.fiverr.com/hadix_z99" target="_blank" rel="noopener"><span class="ic">🟢</span><span><b>Fiverr</b><span>Order safely with buyer protection</span></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y"></span> Dilo. Hand-coded, no templates.</span>
+    <div><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  document.getElementById('y').textContent=new Date().getFullYear();
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav: transparent on the sky, white after
+  const nav=document.getElementById('nav'),hero=document.getElementById('top');
+  const onScroll=()=>nav.classList.toggle('solid',scrollY>hero.offsetHeight-90);
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const navLinks=document.querySelectorAll('nav .links a');
+  const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+  ['about','services','projects','process','contact'].forEach(id=>{const s=document.getElementById(id);if(s)so.observe(s)});
+
+  // reveal on scroll
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ===== floating low-poly island (built from simple shapes) =====
+  (function(){
+    const canvas=document.getElementById('island');
+    if(!window.THREE||!canvas) return;
+    try{
+      const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+      renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));
+      renderer.shadowMap.enabled=true;
+      const scene=new THREE.Scene();
+      const camera=new THREE.PerspectiveCamera(40,1,.1,100);
+      camera.position.set(0,4.2,12.5);camera.lookAt(0,.3,0);
+
+      scene.add(new THREE.HemisphereLight(0xb1e1ff,0x6b5a4a,.9));
+      const sun=new THREE.DirectionalLight(0xffffff,1.1);sun.position.set(5,9,6);sun.castShadow=true;
+      sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-6,right:6,top:6,bottom:-6});
+      scene.add(sun);
+
+      const M=c=>new THREE.MeshStandardMaterial({color:c,flatShading:true,roughness:.9});
+      const add=(geo,mat,x,y,z,p=world)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;p.add(m);return m;};
+      const world=new THREE.Group();scene.add(world);
+
+      // main island
+      const grass=add(new THREE.CylinderGeometry(3.6,3.4,.45,11),M(0xa8d17a),0,0,0);
+      add(new THREE.CylinderGeometry(3.4,.6,2.6,11),M(0xb98a5e),0,-1.52,0);
+      add(new THREE.CylinderGeometry(2.2,.3,1.4,9),M(0x9c7350),.6,-2.7,.3);
+      // path
+      add(new THREE.BoxGeometry(.7,.06,2.6),M(0xe9dcb8),.2,.25,1.7);
+
+      // little shop (Dilo's studio)
+      const house=new THREE.Group();house.position.set(-.3,.22,-.6);world.add(house);
+      add(new THREE.BoxGeometry(2,1.4,1.6),M(0xf6efe4),0,.7,0,house);
+      const roof=add(new THREE.ConeGeometry(1.75,1.1,4),M(0x3d6fe3),0,1.95,0,house);roof.rotation.y=Math.PI/4;
+      add(new THREE.BoxGeometry(.5,.8,.06),M(0x8a5a3b),0,.4,.81,house);
+      add(new THREE.BoxGeometry(.55,.45,.06),M(0xbfe3ff),-.62,.85,.81,house);
+      add(new THREE.BoxGeometry(.55,.45,.06),M(0xbfe3ff),.62,.85,.81,house);
+      add(new THREE.BoxGeometry(.3,.7,.3),M(0xd9cfc2),.55,2.1,-.3,house);
+      // sign "DL"
+      const sc=document.createElement('canvas');sc.width=256;sc.height=128;const g=sc.getContext('2d');
+      g.fillStyle='#ffffff';g.fillRect(0,0,256,128);g.fillStyle='#3D6FE3';g.font='bold 76px Poppins, Arial';g.textAlign='center';g.textBaseline='middle';g.fillText('DILO',128,68);
+      const sign=new THREE.Mesh(new THREE.BoxGeometry(1.2,.45,.05),[M(0xffffff),M(0xffffff),M(0xffffff),M(0xffffff),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc)}),M(0xffffff)]);
+      sign.position.set(0,1.62,.84);house.add(sign);
+
+      // trees
+      const tree=(x,z,s=1)=>{const t=new THREE.Group();t.position.set(x,.22,z);t.scale.setScalar(s);world.add(t);
+        add(new THREE.CylinderGeometry(.08,.12,.6,6),M(0x7a5236),0,.3,0,t);
+        add(new THREE.ConeGeometry(.55,.9,7),M(0x4f9a5b),0,.95,0,t);
+        add(new THREE.ConeGeometry(.42,.7,7),M(0x63b46c),0,1.4,0,t);};
+      tree(-2.4,.4,1.1);tree(-2.1,-1.5,.9);tree(2.3,-1.2,1.2);tree(2.6,.6,.8);tree(1.5,-2.3,.9);tree(-1.2,-2.5,.75);
+      // rocks + flowers
+      [[1.6,1.3,.25],[-1.7,1.6,.2],[2.9,-.2,.18]].forEach(r=>add(new THREE.DodecahedronGeometry(r[2]),M(0xc9ccd1),r[0],.3,r[1]));
+      [[-1,1.4,0xff7aa2],[-.7,1.9,0xffd166],[1.2,2,0xff7aa2],[.9,1.1,0xffffff]].forEach(f=>add(new THREE.SphereGeometry(.09,6,5),M(f[2]),f[0],.3,f[1]));
+
+      // small floating island with a laptop
+      const small=new THREE.Group();small.position.set(-4.8,-.4,.8);world.add(small);
+      add(new THREE.CylinderGeometry(1.1,1,.3,9),M(0xa8d17a),0,0,0,small);
+      add(new THREE.CylinderGeometry(1,.2,1.2,9),M(0xb98a5e),0,-.75,0,small);
+      add(new THREE.BoxGeometry(.9,.05,.6),M(0x2b3245),0,.2,0,small);
+      const scr=add(new THREE.BoxGeometry(.9,.6,.04),M(0x2b3245),0,.5,-.3,small);scr.rotation.x=-.25;
+      add(new THREE.BoxGeometry(.8,.5,.01),new THREE.MeshBasicMaterial({color:0x7dd3fc}),0,.5,-.27,small).rotation.x=-.25;
+
+      // clouds
+      const cloudMat=new THREE.MeshStandardMaterial({color:0xffffff,flatShading:true,roughness:1});
+      const clouds=[];
+      const cloud=(x,y,z,s)=>{const c=new THREE.Group();c.position.set(x,y,z);c.scale.setScalar(s);
+        [[0,0,0,.6],[.55,.05,0,.45],[-.55,0,.05,.42],[.2,.3,0,.4]].forEach(p=>{const m=new THREE.Mesh(new THREE.IcosahedronGeometry(p[3],0),cloudMat);m.position.set(p[0],p[1],p[2]);c.add(m);});
+        scene.add(c);clouds.push(c);};
+      cloud(-5,2.6,-3,1.2);cloud(5.5,1.8,-2,1);cloud(3.5,3.4,-5,1.4);
+
+      // paper plane circling
+      const plane=new THREE.Mesh(new THREE.ConeGeometry(.22,.7,3),new THREE.MeshStandardMaterial({color:0xffffff,flatShading:true}));
+      plane.rotation.z=Math.PI/2;const pg=new THREE.Group();pg.add(plane);scene.add(pg);
+
+      function size(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;
+        camera.position.z=w<700?17:12.5;world.position.x=w<700?.6:0;camera.updateProjectionMatrix();}
+      size();addEventListener('resize',size);
+
+      // drag to rotate
+      let drag=false,lastX=0,vel=0,rotY=-.5;
+      canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;canvas.setPointerCapture(e.pointerId);});
+      canvas.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-lastX;lastX=e.clientX;vel=dx*.004;rotY+=vel;});
+      canvas.addEventListener('pointerup',()=>drag=false);canvas.addEventListener('pointercancel',()=>drag=false);
+
+      let visible=true;new IntersectionObserver(es=>visible=es[0].isIntersecting).observe(canvas);
+      const clock=new THREE.Clock();
+      (function tick(){
+        requestAnimationFrame(tick);
+        if(!visible) return;
+        const t=clock.getElapsedTime();
+        if(!drag){vel*=.95;rotY+=vel+(reduce?0:.0018);}
+        world.rotation.y=rotY;
+        if(!reduce){world.position.y=-1+Math.sin(t*1.1)*.12;small.position.y=-.4+Math.sin(t*1.4+1)*.18;
+          clouds.forEach((c,i)=>{c.position.x+=.003*(i%2?1:-1);if(c.position.x>8)c.position.x=-8;if(c.position.x<-8)c.position.x=8;});
+          const a=t*.5;pg.position.set(Math.cos(a)*5.2,1.6+Math.sin(t)*.3,Math.sin(a)*3.2);pg.rotation.y=-a;}
+        else{world.position.y=-1;}
+        renderer.render(scene,camera);
+      })();
+    }catch(err){console.warn(err)}
+  })();
+</script>
+</body>
+</html>

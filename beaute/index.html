@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Éclat — Institut de beauté &amp; Spa</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23C68A79'/><text x='50' y='74' font-family='Georgia,serif' font-size='62' font-style='italic' fill='%23FFFFFF' text-anchor='middle'>L</text></svg>">
+<meta name="description" content="L'Éclat, institut de beauté & spa. Soins du visage, massages, manucure. Offrez-vous une parenthèse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF4EF;
+    --cream-2:#F3E7DF;
+    --blush:#E9C7BA;
+    --rose:#C68A79;
+    --rose-deep:#A76A59;
+    --plum:#3E2A2E;
+    --gold:#B0863F;
+    --muted:#8A736E;
+    --line:rgba(62,42,46,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color:var(--plum);line-height:1.75;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.1;letter-spacing:.01em}
+  section{padding:6.5rem 1.5rem}
+  .wrap{max-width:1080px;margin:0 auto}
+  .eyebrow{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--rose-deep);font-weight:400}
+  .btn{display:inline-block;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:999px;transition:all .25s}
+  .btn-rose{background:var(--rose);color:#fff}
+  .btn-rose:hover{background:var(--rose-deep);transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--rose);color:var(--rose-deep)}
+  .btn-ghost:hover{background:var(--rose);color:#fff}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 1s,transform 1s}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+  nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;max-width:1080px;margin:0 auto;padding:1.8rem 1.5rem}
+  nav .logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;letter-spacing:.05em;color:#fff}
+  nav .n-cta{color:#fff;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(255,255,255,.5);padding:.7rem 1.4rem;border-radius:999px;transition:all .25s}
+  nav .n-cta:hover{background:#fff;color:var(--plum)}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;animation:soft 24s ease-in-out infinite alternate}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(62,42,46,.35),rgba(62,42,46,.55))}
+  @keyframes soft{from{transform:scale(1)}to{transform:scale(1.1)}}
+  @media (prefers-reduced-motion:reduce){.hero-bg img{animation:none}}
+  .hero .inner{position:relative;z-index:2;padding:0 1rem}
+  .hero .eyebrow{color:var(--blush);margin-bottom:1.5rem}
+  .hero h1{font-size:clamp(3.2rem,10vw,6.5rem);font-weight:400}
+  .hero h1 em{font-style:italic;color:var(--blush)}
+  .hero p{font-weight:300;max-width:32rem;margin:1.4rem auto 2.4rem;font-size:1.1rem;letter-spacing:.02em;opacity:.92}
+
+  /* SOINS */
+  .soins .head{text-align:center;max-width:38rem;margin:0 auto 3.5rem}
+  .soins h2{font-size:clamp(2.4rem,6vw,3.6rem);margin:.6rem 0}
+  .soins .head p{color:var(--muted)}
+  .soin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .soin{background:#fff;border:1px solid var(--line);border-radius:4px;padding:2.4rem 1.8rem;text-align:center;transition:transform .3s,box-shadow .3s}
+  .soin:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(166,106,89,.14)}
+  .soin .ic{font-size:2rem;margin-bottom:1rem}
+  .soin h3{font-size:1.6rem;margin-bottom:.5rem}
+  .soin p{color:var(--muted);font-size:.92rem;font-weight:300;margin-bottom:1rem}
+  .soin .price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--rose-deep);font-weight:600}
+
+  /* EXPERIENCE */
+  .exp{background:var(--cream-2)}
+  .exp .wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .exp img{border-radius:4px;aspect-ratio:4/5;object-fit:cover;width:100%}
+  .exp h2{font-size:clamp(2.2rem,5vw,3.2rem);margin:.7rem 0 1.2rem}
+  .exp p{color:var(--muted);margin-bottom:1rem;font-weight:300}
+  .exp .sign{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--rose-deep);margin-top:1rem}
+
+  /* AVIS */
+  .avis{text-align:center}
+  .avis .stars{color:var(--gold);letter-spacing:.3em;margin-bottom:1.5rem}
+  .avis blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:400;font-style:italic;max-width:44rem;margin:0 auto 1.5rem;line-height:1.3}
+  .avis cite{font-style:normal;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+  /* RESERVER */
+  .book{position:relative;text-align:center;color:#fff;overflow:hidden}
+  .book-bg{position:absolute;inset:0;z-index:0}
+  .book-bg img{width:100%;height:100%;object-fit:cover}
+  .book-bg::after{content:"";position:absolute;inset:0;background:rgba(62,42,46,.6)}
+  .book .inner{position:relative;z-index:2}
+  .book h2{font-size:clamp(2.4rem,6vw,4rem);font-weight:400;margin-bottom:1rem}
+  .book h2 em{font-style:italic;color:var(--blush)}
+  .book p{font-weight:300;max-width:30rem;margin:0 auto 2rem;opacity:.92}
+
+  footer{background:var(--plum);color:rgba(255,255,255,.7);text-align:center;padding:3rem 1.5rem;font-weight:300}
+  footer .logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#fff;display:block;margin-bottom:.5rem}
+  footer .credit{margin-top:1.2rem;font-size:.75rem;letter-spacing:.15em;opacity:.6}
+
+  @media (max-width:820px){
+    section{padding:4.5rem 1.2rem}
+    .soin-grid{grid-template-columns:1fr}
+    .exp .wrap{grid-template-columns:1fr;gap:2rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">L'Éclat</div>
+  <a class="n-cta" href="#book">Réserver</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1600&auto=format&fit=crop" alt=""></div>
+  <div class="inner">
+    <p class="eyebrow">Institut de beauté &amp; Spa</p>
+    <h1>Votre parenthèse<br><em>beauté</em></h1>
+    <p>Des soins d'exception dans un écrin de douceur. Prenez soin de vous, on s'occupe du reste.</p>
+    <a class="btn btn-rose" href="#book">Réserver un soin</a>
+  </div>
+</header>
+
+<!-- SOINS -->
+<section class="soins" id="soins">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Nos prestations</p>
+      <h2>Nos soins signature</h2>
+      <p>Chaque soin est une invitation au lâcher-prise, avec des produits d'exception.</p>
+    </div>
+    <div class="soin-grid">
+      <div class="soin reveal"><div class="ic">🌸</div><h3>Soin du visage</h3><p>Éclat, hydratation, anti-âge. Sur-mesure selon ta peau.</p><div class="price">dès 55 €</div></div>
+      <div class="soin reveal"><div class="ic">💆‍♀️</div><h3>Massage relaxant</h3><p>60 minutes de détente absolue, aux huiles chaudes.</p><div class="price">dès 70 €</div></div>
+      <div class="soin reveal"><div class="ic">💅</div><h3>Manucure &amp; beauté</h3><p>Ongles, mains, pieds — la finition parfaite.</p><div class="price">dès 35 €</div></div>
+      <div class="soin reveal"><div class="ic">✨</div><h3>Épilation</h3><p>Douce et durable, dans le plus grand confort.</p><div class="price">dès 20 €</div></div>
+      <div class="soin reveal"><div class="ic">💄</div><h3>Maquillage</h3><p>Jour, soirée, mariée — sublimez chaque instant.</p><div class="price">dès 45 €</div></div>
+      <div class="soin reveal"><div class="ic">🛁</div><h3>Rituel Spa</h3><p>Le grand jeu : gommage, enveloppement, massage.</p><div class="price">dès 120 €</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp">
+  <div class="wrap">
+    <img class="reveal" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=900&auto=format&fit=crop" alt="Ambiance de l'institut">
+    <div class="reveal">
+      <p class="eyebrow">La maison</p>
+      <h2>Une bulle rien qu'à vous</h2>
+      <p>Dès la porte franchie, le monde s'arrête. Lumière tamisée, senteurs délicates, gestes experts : tout est pensé pour votre bien-être.</p>
+      <p>Nos esthéticiennes diplômées vous accompagnent avec des marques de soin haut de gamme, dans le respect de votre peau.</p>
+      <p class="sign">— Léa, fondatrice de L'Éclat</p>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="avis">
+  <div class="wrap reveal">
+    <div class="stars">★★★★★</div>
+    <blockquote>« Un moment hors du temps. Je ressors à chaque fois détendue et rayonnante. La meilleure adresse de la ville. »</blockquote>
+    <cite>Camille — cliente fidèle</cite>
+  </div>
+</section>
+
+<!-- RESERVER -->
+<section class="book" id="book">
+  <div class="book-bg"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1600&auto=format&fit=crop" alt=""></div>
+  <div class="inner">
+    <p class="eyebrow" style="color:var(--blush)">Prenez rendez-vous</p>
+    <h2>Offrez-vous <em>L'Éclat</em></h2>
+    <p>Réservez votre soin en un appel. Cartes cadeaux disponibles.</p>
+    <a class="btn btn-rose" href="tel:+33100000000">📞 01 00 00 00 00</a>
+  </div>
+</section>
+
+<footer>
+  <span class="logo">L'Éclat</span>
+  <p>8 rue des Lilas · 01 00 00 00 00 · Du mardi au samedi</p>
+  <p class="credit">Maquette de démonstration — réalisée par [ TON NOM ]</p>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

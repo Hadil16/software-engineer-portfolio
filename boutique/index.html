@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MÖRK — Concept store</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23141311'/><text x='50' y='73' font-family='Arial,Helvetica,sans-serif' font-size='58' font-weight='bold' fill='%23F2F0EA' text-anchor='middle'>M</text></svg>">
+<meta name="description" content="MÖRK, concept store en ligne. Mode, accessoires et objets choisis. Livraison offerte dès 50€.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F0EA;
+    --paper-2:#E7E3DA;
+    --ink:#141311;
+    --accent:#C7502F;
+    --accent-2:#3B4A3F;
+    --muted:#77726A;
+    --line:rgba(20,19,17,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:'Syne',sans-serif;font-weight:800;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+  section{padding:5rem 0}
+  .btn{display:inline-block;font-family:'Syne',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.85rem;padding:.9rem 1.8rem;border-radius:2px;transition:all .2s}
+  .btn-ink{background:var(--ink);color:var(--paper)}
+  .btn-ink:hover{background:var(--accent)}
+  .btn-out{border:1.5px solid var(--ink);color:var(--ink)}
+  .btn-out:hover{background:var(--ink);color:var(--paper)}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+  /* announce */
+  .announce{background:var(--ink);color:var(--paper);text-align:center;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:.6rem 1rem;overflow:hidden;white-space:nowrap}
+  .announce div{display:inline-block;animation:mv 24s linear infinite}
+  .announce span{margin:0 2rem}
+  @keyframes mv{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.announce div{animation:none}}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;background:rgba(242,240,234,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .in{max-width:1180px;margin:0 auto;padding:1.1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+  nav .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:.02em}
+  nav .links{display:flex;gap:1.8rem;align-items:center;font-size:.9rem;font-weight:500}
+  nav .links a:hover{color:var(--accent)}
+  nav .cart{font-family:'Syne',sans-serif;font-weight:700;border:1.5px solid var(--ink);border-radius:2px;padding:.4rem .9rem;font-size:.85rem}
+  nav .cart:hover{background:var(--ink);color:var(--paper)}
+  @media (max-width:760px){nav .links a:not(.cart){display:none}}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:center;padding:3.5rem 0 4.5rem}
+  .hero .eyebrow{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.25em;color:var(--accent);margin-bottom:1rem}
+  .hero h1{font-size:clamp(3rem,9vw,6.5rem)}
+  .hero h1 .out{-webkit-text-stroke:1.5px var(--ink);color:transparent}
+  .hero p{color:var(--muted);max-width:26rem;margin:1.4rem 0 2rem;font-size:1.05rem}
+  .hero-img{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden}
+  .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .hero-img:hover img{transform:scale(1.05)}
+  .hero-img .badge{position:absolute;bottom:1rem;left:1rem;background:var(--paper);font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;padding:.6rem 1rem;border-radius:2px}
+
+  /* categories */
+  .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .cat{position:relative;aspect-ratio:1/1;border-radius:4px;overflow:hidden;display:flex;align-items:flex-end;padding:1.4rem}
+  .cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .5s}
+  .cat:hover img{transform:scale(1.07)}
+  .cat::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,19,17,.55),transparent 60%);z-index:1}
+  .cat h3{position:relative;z-index:2;color:var(--paper);font-size:1.4rem}
+
+  /* products */
+  .phead{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+  .phead h2{font-size:clamp(1.8rem,4.5vw,2.8rem)}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .prod{background:var(--paper)}
+  .prod .ph{position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--paper-2)}
+  .prod .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .prod:hover .ph img{transform:scale(1.06)}
+  .prod .add{position:absolute;left:.6rem;right:.6rem;bottom:.6rem;background:var(--ink);color:var(--paper);text-align:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;padding:.7rem;border-radius:2px;opacity:0;transform:translateY(8px);transition:all .25s;cursor:pointer}
+  .prod:hover .add{opacity:1;transform:none}
+  .prod .add:hover{background:var(--accent)}
+  .prod .tag{position:absolute;top:.6rem;left:.6rem;background:var(--accent);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.05em;padding:.25rem .6rem;border-radius:2px;z-index:2}
+  .prod .info{display:flex;justify-content:space-between;align-items:baseline;margin-top:.8rem;gap:.5rem}
+  .prod .name{font-weight:600;font-size:.95rem}
+  .prod .price{font-family:'Syne',sans-serif;font-weight:700}
+  .prod .price s{color:var(--muted);font-weight:400;font-size:.85rem;margin-right:.3rem}
+
+  /* promo */
+  .promo{background:var(--accent-2);color:var(--paper);border-radius:6px;padding:clamp(2.5rem,6vw,4rem);text-align:center;margin:2rem 0}
+  .promo h2{font-size:clamp(2rem,6vw,3.4rem);margin-bottom:1rem}
+  .promo p{opacity:.85;max-width:30rem;margin:0 auto 1.8rem}
+  .promo .btn-ink{background:var(--paper);color:var(--ink)}
+  .promo .btn-ink:hover{background:var(--accent)}
+
+  /* newsletter */
+  .news{text-align:center}
+  .news h2{font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:.6rem}
+  .news p{color:var(--muted);margin-bottom:1.6rem}
+  .news form{display:flex;gap:.6rem;max-width:26rem;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .news input{flex:1;min-width:14rem;padding:.9rem 1.1rem;border:1.5px solid var(--ink);border-radius:2px;background:transparent;font-family:'Inter';font-size:.95rem}
+  .news input:focus{outline:none;border-color:var(--accent)}
+
+  footer{background:var(--ink);color:rgba(242,240,234,.7);margin-top:4rem}
+  footer .in{max-width:1180px;margin:0 auto;padding:3rem 1.5rem;text-align:center}
+  footer .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--paper);display:block;margin-bottom:.5rem}
+  footer .credit{margin-top:1.2rem;font-size:.78rem;letter-spacing:.12em;opacity:.6}
+
+  @media (max-width:900px){.prod-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:760px){.hero{grid-template-columns:1fr}.hero-img{order:-1}.cats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="announce"><div><span>✦ LIVRAISON OFFERTE DÈS 50€</span><span>✦ RETOURS GRATUITS SOUS 30 JOURS</span><span>✦ PIÈCES EN ÉDITION LIMITÉE</span><span>✦ LIVRAISON OFFERTE DÈS 50€</span><span>✦ RETOURS GRATUITS SOUS 30 JOURS</span><span>✦ PIÈCES EN ÉDITION LIMITÉE</span></div></div>
+
+<nav>
+  <div class="in">
+    <div class="logo">MÖRK</div>
+    <div class="links">
+      <a href="#cats">Boutique</a>
+      <a href="#new">Nouveautés</a>
+      <a href="#promo">Soldes</a>
+      <a class="cart" href="#">Panier (0)</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="wrap hero">
+  <div class="reveal">
+    <p class="eyebrow">Collection Automne 2026</p>
+    <h1>Le beau,<br><span class="out">au quotidien.</span></h1>
+    <p>Une sélection pointue de mode et d'objets choisis. Moins, mais mieux.</p>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+      <a class="btn btn-ink" href="#new">Découvrir</a>
+      <a class="btn btn-out" href="#cats">Les catégories</a>
+    </div>
+  </div>
+  <div class="hero-img reveal">
+    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1000&auto=format&fit=crop" alt="Collection MÖRK">
+    <span class="badge">Nouvelle collection ✦</span>
+  </div>
+</header>
+
+<!-- CATEGORIES -->
+<section id="cats"><div class="wrap">
+  <div class="phead reveal"><h2>Explorer</h2></div>
+  <div class="cats">
+    <a class="cat reveal" href="#new"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop" alt=""><h3>Mode</h3></a>
+    <a class="cat reveal" href="#new"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop" alt=""><h3>Accessoires</h3></a>
+    <a class="cat reveal" href="#new"><img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=800&auto=format&fit=crop" alt=""><h3>Maison</h3></a>
+  </div>
+</div></section>
+
+<!-- PRODUCTS -->
+<section id="new"><div class="wrap">
+  <div class="phead reveal">
+    <h2>Nouveautés</h2>
+    <a class="btn btn-out" href="#">Tout voir</a>
+  </div>
+  <div class="prod-grid">
+    <div class="prod reveal"><div class="ph"><span class="tag">-20%</span><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">T-shirt oversize</span><span class="price"><s>35€</s>28€</span></div></div>
+    <div class="prod reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">Sac en cuir</span><span class="price">89€</span></div></div>
+    <div class="prod reveal"><div class="ph"><span class="tag">Nouveau</span><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">Sneakers rétro</span><span class="price">120€</span></div></div>
+    <div class="prod reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1509941943102-10c232535736?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">Montre minimaliste</span><span class="price">150€</span></div></div>
+    <div class="prod reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">Manteau laine</span><span class="price">175€</span></div></div>
+    <div class="prod reveal"><div class="ph"><span class="tag">-15%</span><img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">Lunettes soleil</span><span class="price"><s>60€</s>51€</span></div></div>
+    <div class="prod reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">Appareil photo</span><span class="price">210€</span></div></div>
+    <div class="prod reveal"><div class="ph"><span class="tag">Nouveau</span><img src="https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?q=80&w=700&auto=format&fit=crop" alt=""><div class="add">Ajouter au panier</div></div><div class="info"><span class="name">Chapeau feutre</span><span class="price">45€</span></div></div>
+  </div>
+</div></section>
+
+<!-- PROMO -->
+<section id="promo" style="padding-top:0"><div class="wrap">
+  <div class="promo reveal">
+    <h2>-30% sur la collection été</h2>
+    <p>Les beaux jours s'en vont, les bonnes affaires arrivent. Jusqu'à dimanche seulement.</p>
+    <a class="btn btn-ink" href="#new">J'en profite</a>
+  </div>
+</div></section>
+
+<!-- NEWSLETTER -->
+<section class="news"><div class="wrap reveal">
+  <h2>Rejoins le club</h2>
+  <p>-10% sur ta première commande et les nouveautés en avant-première.</p>
+  <form onsubmit="return false">
+    <input type="email" placeholder="Ton adresse email" aria-label="Email">
+    <button class="btn btn-ink" type="submit">S'inscrire</button>
+  </form>
+</div></section>
+
+<footer>
+  <div class="in">
+    <span class="logo">MÖRK</span>
+    <p>Concept store · Livraison en France &amp; Europe · Paiement sécurisé</p>
+    <p class="credit">Maquette de démonstration — réalisée par [ TON NOM ]</p>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
